@@ -1,0 +1,145 @@
+.armor-set-card {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+.set-header {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: background-color 0.2s;
+}
+
+.set-header:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.set-info {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.set-name {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #ff6600;
+}
+
+.set-progress {
+  background-color: rgba(255, 102, 0, 0.2);
+  color: #ff6600;
+  padding: 0.3em 0.8em;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.progress-container {
+  flex: 0 0 200px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6600, #ff9944);
+  transition: width 0.3s ease;
+}
+
+.expand-btn {
+  padding: 0.5em;
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+  cursor: pointer;
+  min-width: 30px;
+}
+
+.set-pieces {
+  padding: 0 1.5rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.piece-row {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.piece-row:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.piece-name {
+  text-transform: capitalize;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@media (max-width: 768px) {
+  .set-header {
+    padding: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .set-info {
+    width: 100%;
+  }
+
+  .progress-container {
+    flex: 1 1 100%;
+    order: 3;
+  }
+
+  .expand-btn {
+    order: 2;
+  }
+
+  .set-pieces {
+    padding: 0 1rem 1rem 1rem;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .armor-set-card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .set-header:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .set-name {
+    color: #cc5200;
+  }
+
+  .set-progress {
+    background-color: rgba(204, 82, 0, 0.15);
+    color: #cc5200;
+  }
+
+  .piece-row:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+  }
+
+  .piece-name {
+    color: rgba(0, 0, 0, 0.8);
+  }
+}

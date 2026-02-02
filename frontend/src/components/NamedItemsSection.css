@@ -1,0 +1,242 @@
+.named-items-section {
+  margin-top: 0;
+}
+
+.named-top-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.named-top-tab {
+  background: none;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+}
+
+.named-top-tab:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom-color: rgba(255, 102, 0, 0.5);
+}
+
+.named-top-tab.active {
+  color: #ff6600;
+  border-bottom-color: #ff6600;
+}
+
+.named-slot-tabs {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  flex-wrap: wrap;
+}
+
+.slot-tab-btn {
+  background: none;
+  border: none;
+  padding: 0.7rem 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.slot-tab-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-bottom-color: rgba(255, 102, 0, 0.5);
+}
+
+.slot-tab-btn.active {
+  color: #ff6600;
+  border-bottom-color: #ff6600;
+}
+
+.slot-count {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.named-items-progress-bar {
+  position: relative;
+  height: 24px;
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.named-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6600, #ff8833);
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+.named-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.named-items-list {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.named-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  transition: background-color 0.15s;
+}
+
+.named-item-row:last-child {
+  border-bottom: none;
+}
+
+.named-item-row:hover {
+  background-color: rgba(255, 102, 0, 0.05);
+}
+
+.named-item-name {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95rem;
+  font-weight: 400;
+}
+
+.named-items-empty {
+  padding: 2rem;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .named-top-tabs {
+    width: 100%;
+  }
+
+  .named-top-tab {
+    flex: 1;
+    padding: 0.8rem 0.5rem;
+    font-size: 0.9rem;
+  }
+
+  .named-slot-tabs {
+    gap: 0;
+  }
+
+  .slot-tab-btn {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.8rem;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .slot-count {
+    font-size: 0.7rem;
+  }
+
+  .named-item-row {
+    padding: 0.5rem 0.75rem;
+  }
+
+  .named-item-name {
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .named-top-tabs {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .named-top-tab {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .named-top-tab:hover {
+    color: rgba(0, 0, 0, 0.9);
+    border-bottom-color: rgba(204, 82, 0, 0.5);
+  }
+
+  .named-top-tab.active {
+    color: #cc5200;
+    border-bottom-color: #cc5200;
+  }
+
+  .named-slot-tabs {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .slot-tab-btn {
+    color: rgba(0, 0, 0, 0.6);
+  }
+
+  .slot-tab-btn:hover {
+    color: rgba(0, 0, 0, 0.9);
+    border-bottom-color: rgba(204, 82, 0, 0.5);
+  }
+
+  .slot-tab-btn.active {
+    color: #cc5200;
+    border-bottom-color: #cc5200;
+  }
+
+  .named-items-progress-bar {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .named-progress-fill {
+    background: linear-gradient(90deg, #cc5200, #e06600);
+  }
+
+  .named-progress-text {
+    color: rgba(0, 0, 0, 0.9);
+    text-shadow: none;
+  }
+
+  .named-items-list {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .named-item-row {
+    border-bottom-color: rgba(0, 0, 0, 0.06);
+  }
+
+  .named-item-row:hover {
+    background-color: rgba(204, 82, 0, 0.05);
+  }
+
+  .named-item-name {
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .named-items-empty {
+    color: rgba(0, 0, 0, 0.4);
+  }
+}

@@ -1,0 +1,211 @@
+.armor-sets-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.armor-sets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.armor-sets-table thead {
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.armor-sets-table th {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: #ff6600;
+  border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+  white-space: nowrap;
+}
+
+.armor-sets-table th.set-name-col {
+  min-width: 180px;
+  text-align: left;
+}
+
+.armor-sets-table th.progress-col {
+  min-width: 120px;
+  text-align: center;
+}
+
+.armor-sets-table th.slot-col {
+  width: 80px;
+  text-align: center;
+}
+
+.armor-sets-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s;
+}
+
+.armor-sets-table tbody tr:hover {
+  background-color: rgba(255, 102, 0, 0.05);
+}
+
+.armor-sets-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.armor-sets-table td {
+  padding: 0.6rem 0.5rem;
+}
+
+.set-name-cell {
+  font-weight: 500;
+}
+
+.set-name {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.progress-cell {
+  text-align: center;
+}
+
+.progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.progress-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 35px;
+}
+
+.progress-bar-container {
+  flex: 1;
+  max-width: 60px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6600, #ff8833);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.checkbox-cell {
+  text-align: center;
+  padding: 0.4rem;
+}
+
+/* Compact checkbox for table layout */
+.checkbox-cell .item-checkbox {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checkbox-cell input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #ff6600;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .armor-sets-table {
+    font-size: 0.85rem;
+  }
+
+  .armor-sets-table th,
+  .armor-sets-table td {
+    padding: 0.5rem 0.4rem;
+  }
+
+  .armor-sets-table th.set-name-col {
+    min-width: 150px;
+  }
+
+  .armor-sets-table th.slot-col {
+    width: 60px;
+  }
+
+  .checkbox-cell input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .armor-sets-table-container {
+    padding: 0.5rem;
+  }
+
+  .armor-sets-table {
+    font-size: 0.8rem;
+  }
+
+  .armor-sets-table th.set-name-col {
+    min-width: 120px;
+  }
+
+  .armor-sets-table th.slot-col {
+    width: 50px;
+    font-size: 0.75rem;
+  }
+
+  .progress-wrapper {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .progress-bar-container {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Light mode adjustments */
+@media (prefers-color-scheme: light) {
+  .armor-sets-table-container {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .armor-sets-table thead {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .armor-sets-table th {
+    color: #cc5200;
+    border-bottom-color: rgba(204, 82, 0, 0.3);
+  }
+
+  .armor-sets-table tbody tr {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .armor-sets-table tbody tr:hover {
+    background-color: rgba(204, 82, 0, 0.05);
+  }
+
+  .set-name {
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .progress-text {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .progress-bar-container {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,76 @@
+DIVISION 2 GEAR TRACKER - QUICK START
+=====================================
+
+CURRENT STATUS:
+✅ Frontend running on http://localhost:5173
+✅ Frontend dependencies installed
+✅ Backend dependencies installed
+✅ Google Sign-In UI added (button visible on login page)
+
+NEXT STEPS TO GET FULLY WORKING:
+
+1. SET UP DATABASE
+   ----------------
+   mysql -u root -p -e "CREATE DATABASE divtrack;"
+   mysql -u root -p divtrack < database/00_setup_complete.sql
+
+2. CONFIGURE BACKEND
+   ------------------
+   cd backend
+   cp .env.example .env
+   
+   Edit backend/.env with your credentials:
+   
+   DB_HOST=localhost
+   DB_USER=root
+   DB_PASSWORD=your_mysql_password
+   DB_NAME=divtrack
+   
+   FIREBASE_PROJECT_ID=divtrack-6a09d
+   FIREBASE_PRIVATE_KEY="(get from Firebase service account JSON)"
+   FIREBASE_CLIENT_EMAIL=(get from Firebase service account JSON)
+
+3. DOWNLOAD FIREBASE SERVICE ACCOUNT
+   ----------------------------------
+   Go to: https://console.firebase.google.com/project/divtrack-6a09d/settings/serviceaccounts
+   Click: "Generate New Private Key"
+   Save the JSON file
+   Extract the values for .env
+
+4. START BACKEND
+   --------------
+   cd backend
+   npm run dev
+   
+   Should see:
+   - Database connected successfully
+   - Firebase Admin initialized successfully
+   - Server running on port 3000
+
+5. ENABLE GOOGLE SIGN-IN (OPTIONAL)
+   ----------------------------------
+   Go to: https://console.firebase.google.com/project/divtrack-6a09d/authentication/providers
+   Click: Google
+   Toggle: Enable
+   Select support email
+   Save
+
+6. REFRESH BROWSER
+   ----------------
+   Reload http://localhost:5173
+   You should now be able to:
+   - Sign up with email/password
+   - Sign in with Google (if enabled)
+   - Track your gear!
+
+TROUBLESHOOTING:
+- "Failed to load data" = Backend not running or .env not configured
+- "Database connection failed" = Check DB credentials in backend/.env
+- "Firebase Admin initialization failed" = Check Firebase credentials in backend/.env
+- Google Sign-In popup closes immediately = Enable Google provider in Firebase Console
+
+FILE LOCATIONS:
+- Frontend: /home/skunian/code/MyCode/theDivision2/frontend
+- Backend: /home/skunian/code/MyCode/theDivision2/backend
+- Database: /home/skunian/code/MyCode/theDivision2/database
+- Docs: /home/skunian/code/MyCode/theDivision2/ProjectDocuments
