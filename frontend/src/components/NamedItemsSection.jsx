@@ -13,12 +13,12 @@ const GEAR_SLOTS = [
 
 const WEAPON_CATEGORIES = [
   { key: 'assault_rifles', label: 'Assault Rifles', min: 500, max: 519 },
-  { key: 'smgs', label: 'SMGs', min: 520, max: 529 },
-  { key: 'lmgs', label: 'LMGs', min: 530, max: 542 },
-  { key: 'shotguns', label: 'Shotguns', min: 555, max: 567 },
-  { key: 'marksman_rifles', label: 'Marksman Rifles', min: 568, max: 577 },
-  { key: 'rifles', label: 'Rifles', min: 543, max: 554 },
-  { key: 'pistols', label: 'Pistols', min: 578, max: 599 },
+  { key: 'smgs', label: 'SMGs', min: 520, max: 530 },
+  { key: 'lmgs', label: 'LMGs', min: 531, max: 543 },
+  { key: 'shotguns', label: 'Shotguns', min: 556, max: 568 },
+  { key: 'marksman_rifles', label: 'Marksman Rifles', min: 569, max: 580 },
+  { key: 'rifles', label: 'Rifles', min: 544, max: 555 },
+  { key: 'pistols', label: 'Pistols', min: 581, max: 599 },
 ];
 
 const NamedItemsSection = ({ namedItems, namedWeapons, ownedItems, onToggleOwnership }) => {
