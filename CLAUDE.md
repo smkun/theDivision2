@@ -136,3 +136,45 @@ Item catalog (armor sets and exotics) must be seeded into SQL database. Choose o
 - Named item slot classifications were cross-referenced across multiple sources but some disagreements exist (e.g., Death Grips listed as Gloves in older sources, Holster in newer ones) — user may need to correct
 - CORS fix allows any localhost port in development; production deployment should restrict to the actual frontend origin
 - Database credentials are passed on the command line during manual SQL operations (MySQL warning about insecure password usage)
+
+---
+
+## Session Summary — 2026-02-03
+
+### Changes Made
+
+**Database — Named Weapons:**
+- Added 6 missing assault rifles: Born Great, Glory Daze, Goalie, Lud, Manic, The Drill
+- Added 2 missing SMGs: Cabaret, Cold Relations, Grown Great
+- Added 3 missing LMGs: Big Show, New Reliable, Quiet Roar
+- Added 3 missing shotguns: Like Glue, Thorn, The Mop
+- Added 4 missing marksman rifles: Brutus, The Darkness, Instigator, Relic
+- Added 3 missing rifles: Achilles, Stage Left, Sure
+- Added 6 missing pistols: Diceros Special, Maxim 9, P320 XCompact, Sharpshooter's 93R, Survivalist D50, Firestarter
+- Removed Doctor Home from named weapons (it's an exotic, not a named item)
+
+**Database — Named Gear:**
+- Added Bober (chest)
+- Fixed slot misclassifications:
+  - Visionario: moved from holsters to masks
+  - Death Grips: moved from holsters to gloves
+  - Devil's Due: moved from gloves to backpacks
+  - Grease: moved from holsters to kneepads
+- Populated `slot` column for all named gear items (was NULL, causing gear tabs to show empty)
+
+**Frontend:**
+- Updated `NamedItemsSection.jsx` — weapon category tab order: Marksman Rifles now before Rifles (matches in-game)
+- Updated `WEAPON_CATEGORIES` sort_order ranges to reflect new database values after item additions shifted ranges
+
+### Current Database Totals
+
+- 26 armor sets (156 pieces)
+- 38 exotic weapons
+- 29 exotic armor pieces
+- 58 named high-end gear (masks 5, chests 19, holsters 8, backpacks 18, gloves 5, kneepads 3)
+- 70 named high-end weapons (ARs 16, SMGs 10, LMGs 11, shotguns 11, MMRs 7, rifles 8, pistols 11)
+- **Total: 351 items**
+
+### Notes
+- Named items are now verified against user's in-game inventory
+- Sort order ranges have shifted due to insertions; frontend `WEAPON_CATEGORIES` updated accordingly
