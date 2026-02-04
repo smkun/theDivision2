@@ -2,15 +2,6 @@ import React, { useState } from 'react';
 import ItemCheckbox from './ItemCheckbox';
 import './NamedItemsSection.css';
 
-const GEAR_SLOTS = [
-  { key: 'mask', label: 'Mask' },
-  { key: 'chest', label: 'Chest' },
-  { key: 'holster', label: 'Holster' },
-  { key: 'backpack', label: 'Backpack' },
-  { key: 'gloves', label: 'Gloves' },
-  { key: 'kneepads', label: 'Kneepads' },
-];
-
 const WEAPON_CATEGORIES = [
   { key: 'assault_rifles', label: 'Assault Rifles', min: 500, max: 519 },
   { key: 'smgs', label: 'SMGs', min: 520, max: 530 },
@@ -21,18 +12,8 @@ const WEAPON_CATEGORIES = [
   { key: 'pistols', label: 'Pistols', min: 581, max: 599 },
 ];
 
-const NamedItemsSection = ({ namedItems, namedWeapons, ownedItems, onToggleOwnership }) => {
-  const [activeView, setActiveView] = useState('weapons');
-  const [activeGearSlot, setActiveGearSlot] = useState('mask');
+const NamedItemsSection = ({ namedWeapons, ownedItems, onToggleOwnership }) => {
   const [activeWeaponCat, setActiveWeaponCat] = useState('assault_rifles');
-
-  // --- GEAR: group by slot ---
-  const gearBySlot = namedItems.reduce((acc, item) => {
-    const slot = item.slot || 'other';
-    if (!acc[slot]) acc[slot] = [];
-    acc[slot].push(item);
-    return acc;
-  }, {});
 
   // --- WEAPONS: group by sort_order range ---
   const weaponsByCat = WEAPON_CATEGORIES.reduce((acc, cat) => {
@@ -47,49 +28,20 @@ const NamedItemsSection = ({ namedItems, namedWeapons, ownedItems, onToggleOwner
     return { owned, total: items.length };
   };
 
-  // Determine current list and progress
-  let currentItems, currentProgress, subTabs, activeSubTab, setActiveSubTab;
-
-  if (activeView === 'gear') {
-    subTabs = GEAR_SLOTS;
-    activeSubTab = activeGearSlot;
-    setActiveSubTab = setActiveGearSlot;
-    currentItems = (gearBySlot[activeGearSlot] || []).sort((a, b) => a.name.localeCompare(b.name));
-    currentProgress = getProgress(currentItems);
-  } else {
-    subTabs = WEAPON_CATEGORIES;
-    activeSubTab = activeWeaponCat;
-    setActiveSubTab = setActiveWeaponCat;
-    currentItems = (weaponsByCat[activeWeaponCat] || []).sort((a, b) => a.name.localeCompare(b.name));
-    currentProgress = getProgress(currentItems);
-  }
+  const currentItems = (weaponsByCat[activeWeaponCat] || []).sort((a, b) => a.name.localeCompare(b.name));
+  const currentProgress = getProgress(currentItems);
 
   return (
     <div className="named-items-section">
-      <div className="named-top-tabs">
-        <button
-          className={`named-top-tab ${activeView === 'weapons' ? 'active' : ''}`}
-          onClick={() => setActiveView('weapons')}
-        >
-          Weapons ({namedWeapons.length})
-        </button>
-        <button
-          className={`named-top-tab ${activeView === 'gear' ? 'active' : ''}`}
-          onClick={() => setActiveView('gear')}
-        >
-          Gear ({namedItems.length})
-        </button>
-      </div>
-
       <div className="named-slot-tabs">
-        {subTabs.map(({ key, label }) => {
-          const items = activeView === 'gear' ? (gearBySlot[key] || []) : (weaponsByCat[key] || []);
+        {WEAPON_CATEGORIES.map(({ key, label }) => {
+          const items = weaponsByCat[key] || [];
           const progress = getProgress(items);
           return (
             <button
               key={key}
-              className={`slot-tab-btn ${activeSubTab === key ? 'active' : ''}`}
-              onClick={() => setActiveSubTab(key)}
+              className={`slot-tab-btn ${activeWeaponCat === key ? 'active' : ''}`}
+              onClick={() => setActiveWeaponCat(key)}
             >
               {label}
               <span className="slot-count">({progress.owned}/{progress.total})</span>

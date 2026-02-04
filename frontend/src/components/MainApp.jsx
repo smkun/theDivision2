@@ -3,8 +3,10 @@ import { useAuth } from '@/contexts/AuthContext';
 import { catalogAPI, userItemsAPI, setAuthToken } from '@/services/api';
 import AppHeader from './AppHeader';
 import ArmorSetsTable from './ArmorSetsTable';
+import BrandSetsTable from './BrandSetsTable';
 import ExoticsSection from './ExoticsSection';
 import NamedItemsSection from './NamedItemsSection';
+import BuildsSection from './BuildsSection';
 import './MainApp.css';
 
 const MainApp = () => {
@@ -14,10 +16,7 @@ const MainApp = () => {
   const [ownedItems, setOwnedItems] = useState(new Set());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  
-  const [searchTerm, setSearchTerm] = useState('');
-  const [showMissingOnly, setShowMissingOnly] = useState(false);
-  const [activeTab, setActiveTab] = useState('armor-sets'); // 'armor-sets', 'exotics', or 'named'
+  const [activeTab, setActiveTab] = useState('armor-sets');
 
   // Load data on mount
   useEffect(() => {
@@ -78,15 +77,6 @@ const MainApp = () => {
     }
   };
 
-  // Filter items based on search and missing toggle
-  const filterItems = (items) => {
-    return items.filter(item => {
-      const matchesSearch = item.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesMissing = !showMissingOnly || !ownedItems.has(item.id);
-      return matchesSearch && matchesMissing;
-    });
-  };
-
   // Group armor set pieces by set name
   const armorSets = catalog
     .filter(item => item.type === 'armor_set_piece')
@@ -103,7 +93,18 @@ const MainApp = () => {
     item.type === 'exotic_weapon' || item.type === 'exotic_armor'
   );
 
-  // Get named items (gear + weapons)
+  // Group brand pieces by brand name
+  const brandSets = catalog
+    .filter(item => item.type === 'brand_piece')
+    .reduce((acc, item) => {
+      if (!acc[item.set_name]) {
+        acc[item.set_name] = [];
+      }
+      acc[item.set_name].push(item);
+      return acc;
+    }, {});
+
+  // Get named items (gear + weapons) - gear items shown within brand sets
   const namedItems = catalog.filter(item => item.type === 'named_item');
   const namedWeapons = catalog.filter(item => item.type === 'named_weapon');
 
@@ -131,12 +132,7 @@ const MainApp = () => {
 
   return (
     <div className="main-app">
-      <AppHeader
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
-        showMissingOnly={showMissingOnly}
-        onToggleMissing={setShowMissingOnly}
-      />
+      <AppHeader />
 
       <main className="app-content">
         <nav className="main-nav">
@@ -144,7 +140,13 @@ const MainApp = () => {
             className={`nav-tab ${activeTab === 'armor-sets' ? 'active' : ''}`}
             onClick={() => setActiveTab('armor-sets')}
           >
-            Armor Sets
+            Gear Sets
+          </button>
+          <button
+            className={`nav-tab ${activeTab === 'brand-sets' ? 'active' : ''}`}
+            onClick={() => setActiveTab('brand-sets')}
+          >
+            Brand Sets
           </button>
           <button
             className={`nav-tab ${activeTab === 'exotics' ? 'active' : ''}`}
@@ -156,7 +158,13 @@ const MainApp = () => {
             className={`nav-tab ${activeTab === 'named' ? 'active' : ''}`}
             onClick={() => setActiveTab('named')}
           >
-            Named Items
+            Named Weapons
+          </button>
+          <button
+            className={`nav-tab ${activeTab === 'builds' ? 'active' : ''}`}
+            onClick={() => setActiveTab('builds')}
+          >
+            My Builds
           </button>
         </nav>
 
@@ -170,9 +178,20 @@ const MainApp = () => {
           </section>
         )}
 
+        {activeTab === 'brand-sets' && (
+          <section className="brand-sets-section">
+            <BrandSetsTable
+              brandSets={brandSets}
+              namedItems={namedItems}
+              ownedItems={ownedItems}
+              onToggleOwnership={handleToggleOwnership}
+            />
+          </section>
+        )}
+
         {activeTab === 'exotics' && (
           <ExoticsSection
-            exotics={filterItems(exotics)}
+            exotics={exotics}
             ownedItems={ownedItems}
             onToggleOwnership={handleToggleOwnership}
           />
@@ -180,10 +199,16 @@ const MainApp = () => {
 
         {activeTab === 'named' && (
           <NamedItemsSection
-            namedItems={filterItems(namedItems)}
-            namedWeapons={filterItems(namedWeapons)}
+            namedWeapons={namedWeapons}
             ownedItems={ownedItems}
             onToggleOwnership={handleToggleOwnership}
+          />
+        )}
+
+        {activeTab === 'builds' && (
+          <BuildsSection
+            ownedItems={ownedItems}
+            catalog={catalog}
           />
         )}
       </main>

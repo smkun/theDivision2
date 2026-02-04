@@ -1,0 +1,267 @@
+.brand-sets-table-container {
+  width: 100%;
+  overflow-x: auto;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.brand-sets-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.brand-sets-table thead {
+  position: sticky;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.brand-sets-table th {
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  font-weight: 600;
+  color: #ff6600;
+  border-bottom: 2px solid rgba(255, 102, 0, 0.3);
+  white-space: nowrap;
+}
+
+.brand-sets-table th.set-name-col {
+  min-width: 180px;
+  text-align: left;
+}
+
+.brand-sets-table th.progress-col {
+  min-width: 120px;
+  text-align: center;
+}
+
+.brand-sets-table th.slot-col {
+  width: 80px;
+  text-align: center;
+}
+
+.brand-sets-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: background-color 0.2s;
+}
+
+.brand-sets-table tbody tr:hover {
+  background-color: rgba(255, 102, 0, 0.05);
+}
+
+.brand-sets-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.brand-sets-table td {
+  padding: 0.6rem 0.5rem;
+}
+
+.brand-sets-table .set-name-cell {
+  font-weight: 500;
+}
+
+.brand-sets-table .set-name {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.brand-sets-table .progress-cell {
+  text-align: center;
+}
+
+.brand-sets-table .progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.brand-sets-table .progress-text {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+  min-width: 35px;
+}
+
+.brand-sets-table .progress-bar-container {
+  flex: 1;
+  max-width: 60px;
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.brand-sets-table .progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6600, #ff8833);
+  border-radius: 3px;
+  transition: width 0.3s ease;
+}
+
+.brand-sets-table .checkbox-cell {
+  text-align: center;
+  padding: 0.4rem;
+}
+
+/* Slot content wrapper - keep checkboxes aligned */
+.brand-sets-table .slot-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 24px;
+}
+
+/* Compact checkbox for table layout */
+.brand-sets-table .checkbox-cell .item-checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+}
+
+.brand-sets-table .checkbox-cell input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  accent-color: #ff6600;
+  margin: 0;
+}
+
+/* Generic piece row - checkbox only, centered */
+.brand-sets-table .generic-piece-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.brand-sets-table .generic-label {
+  display: none; /* Hide generic label for cleaner look */
+}
+
+/* Named item row - checkbox with name below */
+.brand-sets-table .named-item-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 2px 0;
+}
+
+/* Gold border for named item checkboxes */
+.brand-sets-table .named-item-row input[type="checkbox"] {
+  accent-color: #ffcc00;
+  outline: 2px solid rgba(255, 204, 0, 0.5);
+  outline-offset: 1px;
+}
+
+.brand-sets-table .named-item-name {
+  font-size: 0.55rem;
+  color: #ffcc00;
+  line-height: 1;
+  text-align: center;
+  max-width: 70px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .brand-sets-table {
+    font-size: 0.85rem;
+  }
+
+  .brand-sets-table th,
+  .brand-sets-table td {
+    padding: 0.5rem 0.4rem;
+  }
+
+  .brand-sets-table th.set-name-col {
+    min-width: 150px;
+  }
+
+  .brand-sets-table th.slot-col {
+    width: 60px;
+  }
+
+  .brand-sets-table .checkbox-cell input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-sets-table-container {
+    padding: 0.5rem;
+  }
+
+  .brand-sets-table {
+    font-size: 0.8rem;
+  }
+
+  .brand-sets-table th.set-name-col {
+    min-width: 120px;
+  }
+
+  .brand-sets-table th.slot-col {
+    width: 50px;
+    font-size: 0.75rem;
+  }
+
+  .brand-sets-table .progress-wrapper {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .brand-sets-table .progress-bar-container {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+
+/* Light mode adjustments */
+@media (prefers-color-scheme: light) {
+  .brand-sets-table-container {
+    background-color: rgba(255, 255, 255, 0.8);
+  }
+
+  .brand-sets-table thead {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  .brand-sets-table th {
+    color: #cc5200;
+    border-bottom-color: rgba(204, 82, 0, 0.3);
+  }
+
+  .brand-sets-table tbody tr {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .brand-sets-table tbody tr:hover {
+    background-color: rgba(204, 82, 0, 0.05);
+  }
+
+  .brand-sets-table .set-name {
+    color: rgba(0, 0, 0, 0.9);
+  }
+
+  .brand-sets-table .progress-text {
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  .brand-sets-table .progress-bar-container {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .brand-sets-table .named-item-name {
+    color: #cc8800;
+  }
+}

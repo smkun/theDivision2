@@ -178,3 +178,35 @@ Item catalog (armor sets and exotics) must be seeded into SQL database. Choose o
 ### Notes
 - Named items are now verified against user's in-game inventory
 - Sort order ranges have shifted due to insertions; frontend `WEAPON_CATEGORIES` updated accordingly
+
+---
+
+## Session Summary — 2026-02-04
+
+### Changes Made
+
+**Database Fixes:**
+- Fixed typo: "Sure" → "Surge" (named rifle)
+
+**Design:**
+- Created design document for "My Builds" feature: `docs/plans/2026-02-04-my-builds-design.md`
+- Feature allows users to create, save, edit, duplicate, and optionally share builds publicly
+- Builds include: 6 gear slots (with structured attributes), 3 weapon slots (with talents), specialization, 2 skills, and notes
+- All attributes, talents, skills, and specializations will be stored in reference tables for dropdown selection
+- Community builds section allows browsing all public builds
+- Copy public builds: users can copy any public build into their own builds list
+- Ownership indicators: green (owned), yellow (not tracked + checkbox), red (not owned) — ties builds to existing item tracking
+- Brand sets: new `brand_piece` type with ~126 items (21 brands × 6 slots), new "Brand Sets" tab like Armor Sets
+
+### New Tasks / Next Steps
+1. Add `brand_piece` to items.type ENUM and seed ~126 brand set pieces (21 brands × 6 slots)
+2. Create frontend `BrandSetsSection.jsx` component (reuse ArmorSetsTable pattern)
+3. Create database tables: `attributes`, `talents`, `skills`, `specializations`, `builds`, `build_gear`, `build_weapons`
+4. Seed reference data (attributes, talents, skills, specializations)
+5. Implement backend API endpoints for reference data and build CRUD
+
+### Risks
+- Talent and attribute lists may be incomplete — will need to compile comprehensive lists from game data
+- Combo boxes for item names need to gracefully handle both catalog items and custom text input
+- Public builds feature exposes user-created content — may need moderation consideration in future
+- Build summary auto-generation ("4pc Ongoing Directive + Fenris") requires parsing item names to detect set pieces
